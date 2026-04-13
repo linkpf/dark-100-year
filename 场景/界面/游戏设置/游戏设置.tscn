@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://c7e4p8c8f8e0"]
+
+[ext_resource type="Script" uid="uid://dmt8d1am53fnb" path="res://场景/界面/游戏设置/游戏设置.gd" id="1_45z0v"]
+
+[node name="游戏设置" type="Control" unique_id=1717356239]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_45z0v")
+
+[node name="背景" type="ColorRect" parent="." unique_id=1400252870]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=422655225]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=2116961910]
+layout_mode = 2
+text = "音量设置"
+
+[node name="音量滑块" type="HSlider" parent="VBoxContainer" unique_id=1442954243]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.7
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1974573137]
+layout_mode = 2
+text = "窗口模式"
+
+[node name="窗口模式选项" type="OptionButton" parent="VBoxContainer" unique_id=1863243087]
+layout_mode = 2
+
+[node name="保存按钮" type="Button" parent="VBoxContainer" unique_id=1763587713]
+layout_mode = 2
+text = "保存设置"
+
+[node name="返回按钮" type="Button" parent="VBoxContainer" unique_id=1586468382]
+layout_mode = 2
+text = "返回主菜单"

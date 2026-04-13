@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dfveqd67u5nig"]
+
+[ext_resource type="Script" uid="uid://beqobr3frs3of" path="res://场景/界面/主菜单.gd" id="1_45z0v"]
+
+[node name="主菜单" type="Control" unique_id=56786313]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_45z0v")
+
+[node name="背景" type="ColorRect" parent="." unique_id=298239399]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=337548959]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="开始游戏按钮" type="Button" parent="VBoxContainer" unique_id=370155035]
+layout_mode = 2
+text = "开始游戏"
+
+[node name="游戏设置按钮" type="Button" parent="VBoxContainer" unique_id=1372787911]
+layout_mode = 2
+text = "游戏设置"
+
+[node name="退出游戏按钮" type="Button" parent="VBoxContainer" unique_id=697420220]
+layout_mode = 2
+text = "退出游戏"

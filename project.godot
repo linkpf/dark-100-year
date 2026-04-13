@@ -11,8 +11,18 @@ config_version=5
 [application]
 
 config/name="幽冥100年"
+run/main_scene="res://场景/界面/主菜单.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+"全局_事件总线"="*res://源码/游戏/事件总线.gd"
+"全局_游戏管理器"="*res://源码/游戏/游戏管理器.gd"
+"全局_数据管理器"="*res://源码/游戏/数据管理器.gd"
+"全局_资源管理器"="*res://源码/游戏/资源管理器.gd"
+"全局_音效管理器"="*res://源码/游戏/音效管理器.gd"
+"全局_场景管理器"="*res://源码/游戏/场景管理器.gd"
 
 [physics]
 

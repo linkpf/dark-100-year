@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://psgqcf4lm0gx"
+
+[deps]
+
+source_file="res://资源/配置表/角色_基础属性配置.csv"
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

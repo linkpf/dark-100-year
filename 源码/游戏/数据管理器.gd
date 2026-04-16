@@ -86,3 +86,10 @@ func 加载游戏设置() -> Dictionary:
 		}
 	
 	return 设置
+
+# 退出树时的清理
+func _exit_tree() -> void:
+	# 强制保存一次游戏设置
+	var 设置 = 加载游戏设置()
+	保存游戏设置(设置)
+	print("数据管理器已清理")

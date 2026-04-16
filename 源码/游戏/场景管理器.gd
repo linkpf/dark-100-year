@@ -17,14 +17,15 @@ func _ready() -> void:
 func 切换场景(场景路径: String, 过渡时间: float = 0.5) -> void:
 	# 预加载场景
 	var 场景 = null
-	if 全局_资源管理器:
-		场景 = 全局_资源管理器.预加载场景(场景路径)
+	var 资源管理器 = get_node_or_null("/root/全局_资源管理器")
+	if 资源管理器:
+		场景 = 资源管理器.预加载场景(场景路径)
 	if not 场景:
 		print("场景加载失败: " + 场景路径)
 		return
 	
 	# 卸载当前场景
-	if 当前场景:
+	if 当前场景 and 当前场景 != get_tree().get_root():
 		当前场景.queue_free()
 	
 	# 加载新场景
@@ -33,8 +34,9 @@ func 切换场景(场景路径: String, 过渡时间: float = 0.5) -> void:
 
 # 预加载场景
 func 预加载场景(场景路径: String) -> bool:
-	if 全局_资源管理器:
-		return 全局_资源管理器.预加载场景(场景路径) != null
+	var 资源管理器 = get_node_or_null("/root/全局_资源管理器")
+	if 资源管理器:
+		return 资源管理器.预加载场景(场景路径) != null
 	return false
 
 # 获取当前场景
@@ -54,3 +56,11 @@ func 场景出队() -> void:
 # 清空场景队列
 func 清空场景队列() -> void:
 	场景队列.clear()
+
+# 退出树时的清理
+func _exit_tree() -> void:
+	# 清空当前场景引用
+	当前场景 = null
+	# 清空场景队列
+	清空场景队列()
+	print("场景管理器已清理")

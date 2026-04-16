@@ -5,8 +5,6 @@ extends Node
 # 导入常量
 const 常量 = preload("res://源码/核心/常量.gd")
 
-
-
 # 定时器
 var timeout: Timer
 
@@ -36,45 +34,49 @@ var 游戏配置: Dictionary = {
 	"控制设置": {}
 }
 
-
-
 func _connect_events() -> void:
 	# 连接事件
-	if 全局_事件总线:
-		全局_事件总线.游戏开始.connect(_on_游戏开始)
-		全局_事件总线.游戏暂停.connect(_on_游戏暂停)
-		全局_事件总线.游戏继续.connect(_on_游戏继续)
-		全局_事件总线.游戏结束.connect(_on_游戏结束)
+	var 事件总线 = get_node_or_null("/root/全局_事件总线")
+	if 事件总线:
+		事件总线.游戏开始.connect(_on_游戏开始)
+		事件总线.游戏暂停.connect(_on_游戏暂停)
+		事件总线.游戏继续.connect(_on_游戏继续)
+		事件总线.游戏结束.connect(_on_游戏结束)
 
 # 开始游戏
 func 开始游戏() -> void:
 	游戏状态 = 常量.游戏状态.大地图
-	if 全局_事件总线:
-		全局_事件总线.游戏开始.emit()
+	var 事件总线 = get_node_or_null("/root/全局_事件总线")
+	if 事件总线:
+		事件总线.游戏开始.emit()
 
 # 暂停游戏
 func 暂停游戏() -> void:
 	游戏状态 = 常量.游戏状态.暂停
-	if 全局_事件总线:
-		全局_事件总线.游戏暂停.emit()
+	var 事件总线 = get_node_or_null("/root/全局_事件总线")
+	if 事件总线:
+		事件总线.游戏暂停.emit()
 
 # 继续游戏
 func 继续游戏() -> void:
 	游戏状态 = 常量.游戏状态.战斗
-	if 全局_事件总线:
-		全局_事件总线.游戏继续.emit()
+	var 事件总线 = get_node_or_null("/root/全局_事件总线")
+	if 事件总线:
+		事件总线.游戏继续.emit()
 
 # 结束游戏
 func 结束游戏(原因: String) -> void:
 	游戏状态 = 常量.游戏状态.游戏结束
-	if 全局_事件总线:
-		全局_事件总线.游戏结束.emit(原因)
+	var 事件总线 = get_node_or_null("/root/全局_事件总线")
+	if 事件总线:
+		事件总线.游戏结束.emit(原因)
 
 # 进入战斗
 func 进入战斗(节点数据: Resource) -> void:
 	游戏状态 = 常量.游戏状态.战斗
-	if 全局_事件总线:
-		全局_事件总线.战斗开始.emit(节点数据)
+	var 事件总线 = get_node_or_null("/root/全局_事件总线")
+	if 事件总线:
+		事件总线.战斗开始.emit(节点数据)
 
 # 战斗结束
 func 战斗结束(胜利: bool, 奖励: Dictionary) -> void:
@@ -82,8 +84,9 @@ func 战斗结束(胜利: bool, 奖励: Dictionary) -> void:
 		游戏状态 = 常量.游戏状态.大地图
 	else:
 		游戏状态 = 常量.游戏状态.游戏结束
-	if 全局_事件总线:
-		全局_事件总线.战斗结束.emit(胜利, 奖励)
+	var 事件总线 = get_node_or_null("/root/全局_事件总线")
+	if 事件总线:
+		事件总线.战斗结束.emit(胜利, 奖励)
 
 # 进入大地图
 func 进入大地图() -> void:
@@ -105,3 +108,18 @@ func _on_游戏继续() -> void:
 
 func _on_游戏结束(原因: String) -> void:
 	print("游戏结束: " + 原因)
+
+# 退出树时的清理
+func _exit_tree() -> void:
+	# 停止所有运行中的协程
+	if timeout:
+		timeout.stop()
+		
+	# 重置游戏状态
+	游戏状态 = 常量.游戏状态.主菜单
+	当前层数 = 1
+	当前波数 = 0
+	
+	# 信号会在Godot中自动断开，不需要手动断开
+	
+	print("游戏管理器已清理")

@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://lnwo172ncfai"
+
+[deps]
+
+source_file="res://资源/配置表/法宝_全量配置.csv"
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

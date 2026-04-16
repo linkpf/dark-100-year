@@ -34,3 +34,8 @@ signal 游戏开始()
 signal 游戏暂停()
 signal 游戏继续()
 signal 游戏结束(原因: String)
+
+# 退出树时的清理
+func _exit_tree() -> void:
+	# 信号会在Godot中自动断开，不需要手动断开
+	print("事件总线已清理")

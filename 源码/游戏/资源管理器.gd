@@ -2,6 +2,12 @@
 class_name 资源管理器
 extends Node
 
+# 配置表路径常量
+const 配置表目录: String = "res://配置表/"
+const 角色配置表: String = 配置表目录 + "角色_基础属性配置.csv"
+const 法宝配置表: String = 配置表目录 + "法宝_全量配置.csv"
+const 敌人配置表: String = 配置表目录 + "敌人_全量配置.csv"
+
 # 资源缓存
 var 资源缓存: Dictionary = {}
 
@@ -62,6 +68,19 @@ func 预加载常用资源() -> void:
 	
 	# 预加载地图相关资源
 	预加载资源("res://资源/数据/地图/地图节点数据.tres")
+
+# 获取配置表路径
+func 获取配置表路径(配置表类型: String) -> String:
+	match 配置表类型:
+		"角色":
+			return 角色配置表
+		"法宝":
+			return 法宝配置表
+		"敌人":
+			return 敌人配置表
+		_:
+			print("未知的配置表类型: " + 配置表类型)
+			return ""
 
 # 退出树时的清理
 func _exit_tree() -> void:

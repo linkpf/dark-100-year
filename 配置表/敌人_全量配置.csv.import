@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://jiq0cnpgkcwu"
+
+[deps]
+
+source_file="res://配置表/敌人_全量配置.csv"
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
